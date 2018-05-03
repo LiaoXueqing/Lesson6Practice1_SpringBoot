@@ -1,8 +1,6 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -22,6 +20,30 @@ public class EmployeeController {
     @RequestMapping(value="/", method= RequestMethod.POST)
     public String addEmployee(Employee employee){
         employees.put(employee.getId(),employee);
+        return "success";
+    }
+    @RequestMapping(value="/{id}", method= RequestMethod.GET)
+    public Employee getEmployeeById(@PathVariable Long id){
+        return employees.get(id);
+    }
+    @RequestMapping(value="/{id}", method= RequestMethod.DELETE)
+    public String deleteEmployeeById(@PathVariable Long id){
+        employees.remove(id);
+        return "success";
+    }
+    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
+    public String updateEmployee(@PathVariable Long id, @ModelAttribute Employee employee) {
+
+        // 处理"/employees/{id}"的PUT请求，用来更新Employee信息
+
+        Employee e = employees.get(id);
+
+        e.setId(employee.getId());
+        e.setName(employee.getName());
+        e.setAge(employee.getAge());
+        e.setGender(employee.getGender());
+
+        employees.put(id, e);
         return "success";
     }
 }
