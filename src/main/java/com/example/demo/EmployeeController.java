@@ -15,6 +15,16 @@ public class EmployeeController {
         for (Map.Entry<Long, Employee> e:employees.entrySet()) {
             employeeList.add(e.getValue());
         }
+//        Employee e1 = new Employee(0,"王小明",20,"男");
+//        Employee e2 = new Employee(1,"李小红",19,"女");
+//        Employee e3 = new Employee(2,"张小智",15,"男");
+//        Employee e4 = new Employee(3,"黄小刚",16,"男");
+//        Employee e5 = new Employee(4,"周小霞",15,"女");
+//        employeeList.add(e1);
+//        employeeList.add(e2);
+//        employeeList.add(e3);
+//        employeeList.add(e4);
+//        employeeList.add(e5);
         return employeeList;
     }
     @RequestMapping(value="/", method= RequestMethod.POST)
